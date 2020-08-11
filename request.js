@@ -1,4 +1,5 @@
 const xhttp = new XMLHttpRequest();
+let jsondata;
 let directories = [];
 xhttp.onreadystatechange = function () {
   console.log(this.status, this.readyState);
@@ -7,13 +8,13 @@ xhttp.onreadystatechange = function () {
       const json = JSON.parse(xhttp.responseText);
       directories = json.resourceItems;
       console.log(directories);
-      for (let i = 0; i <= directories.length; i++) {
-        console.log(directories[i]);
-      }
+      jsondata = JSON.stringify(directories);
+
+      console.log(jsondata);
     }
   }
 };
-xhttp.open("GET", "https://nrd.gov/NRDRestService/search/common", false);
+xhttp.open("GET", "https://nrd.gov/NRDRestService/search/common");
 xhttp.send();
 
 for (let i = 0; i <= directories.length; i++) {
